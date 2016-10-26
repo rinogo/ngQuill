@@ -362,7 +362,7 @@ app.run([
         return $templateCache.put('ngQuill/template.html',
             '<div id="content-container">' +
                 '<div class="advanced-wrapper">' +
-                    '<div class="toolbar toolbar-container" ng-if="$ctrl.toolbar" ng-show="$ctrl.toolbarCreated && $ctrl.showToolbar">' +
+                    '<div class="toolbar toolbar-container" ng-show="$ctrl.toolbar && $ctrl.toolbarCreated && $ctrl.showToolbar">' +
                         '<span class="ql-format-group" ng-if="$ctrl.shouldShow([\'font\', \'size\'])">' +
                             '<select title="{{$ctrl.dict.font}}" class="ql-font" ng-if="$ctrl.shouldShow([\'font\'])">' +
                                 '<option ng-repeat="option in $ctrl.fontfamilyOptions" value="{{option.alias}}">{{option.label}}</option>' +
