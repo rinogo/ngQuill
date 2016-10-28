@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "angular": "^1.5.6",
-    "quill": "git+https://github.com/rinogo/quill.git"
+    "quill": "https://github.com/rinogo/quill/tarball/v0.20.1"
   },
   "license": "MIT",
   "repository": {
