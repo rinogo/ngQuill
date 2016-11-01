@@ -349,6 +349,11 @@ app.component('ngQuillEditor', {
             $element.on('$destroy', function () {
                 editor.destroy();
             });
+
+            //Added by Rich - In some scenarios, $onChanges (which is responsible for calling editor.setHTML()) wasn't being called because it seemed that in those scenarios, the value of ngModel was set *before* $onChanges was set up.  I think it might have been due to our usage of ng-quill within an ng-repeat.  Regardless, this seems to fix the problem for those special cases while (hopefully) not disrupting the scenarios in which nq-quill already worked. 
+            if(typeof this.ngModel != "undefined") {
+                editor.setHTML(this.ngModel);
+            }
         };
     }]
 });
