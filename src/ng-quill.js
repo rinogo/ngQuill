@@ -338,10 +338,14 @@ app.component('ngQuillEditor', {
                     if(editor.getLength() < 1) {
                         this.ngModelController.$setViewValue('');
                     } else {
+                        //Convert to hex, padding with zeroes such that the result is always two characters long.
+                        function decToHex(n) {
+                            return ("00" + parseInt(n).toString(16)).slice(-2); //https://stackoverflow.com/questions/10073699/pad-a-number-with-leading-zeros-in-javascript#comment43818360_10073699
+                        }
                         //Convert a CSS color in the `rgb()` format into the hexadecimal format. Adapted from https://stackoverflow.com/a/25018242/114558
                         function rgbToHex(rgb) {
                             rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-                            return "#" + rgb[1].toString(16) + rgb[2].toString(16) + rgb[3].toString(16);
+                            return "#" + decToHex(rgb[1]) + decToHex(rgb[2]) + decToHex(rgb[3]);
                         }
                         //Replace all CSS `rgb()` color specifications with their hex code equivalents (since WP's `safecss_filter_attr()` filters all colors in the `rgb()` format)
                         setValue = setValue.replace(/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/g, rgbToHex);
